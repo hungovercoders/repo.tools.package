@@ -3,7 +3,7 @@
 
 set -e
 
-PYPROJECT="hungovercoders-repo-tools/pyproject.toml"
+PYPROJECT="hungovercoders_repo_tools/pyproject.toml"
 VERSION=$(grep '^version' "$PYPROJECT" | head -1 | cut -d '"' -f2)
 TAG="v$VERSION"
 
