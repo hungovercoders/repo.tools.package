@@ -11,4 +11,5 @@ uv remove requests
 uv lock --upgrade-package requests
 uv build
 uv init --lib my-package
+pip install -e .
 ```
