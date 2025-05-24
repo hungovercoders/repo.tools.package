@@ -7,7 +7,7 @@ on:
     tags:
       - 'v*'
     paths:
-    - 'hungovercoders-repo-tools/**'
+    - 'hungovercoders_repo_tools/**'
     - '.github/workflows/pypi-publish.yml'
 
 jobs:
@@ -21,27 +21,27 @@ jobs:
 
       - name: Install the project
         run: |
-          cd hungovercoders-repo-tools
+          cd hungovercoders_repo_tools
           uv sync --all-extras --dev
 
       - name: Run Lint
         run: |
-          cd hungovercoders-repo-tools
+          cd hungovercoders_repo_tools
           uvx ruff check
 
       - name: Run tests
         run: |
-          cd hungovercoders-repo-tools
+          cd hungovercoders_repo_tools
           uvx pytest
 
       - name: Build distribution
         run: |
-          cd hungovercoders-repo-tools
+          cd hungovercoders_repo_tools
           uv build
 
       - name: Check distribution with twine
         run: |
-          cd hungovercoders-repo-tools
+          cd hungovercoders_repo_tools
           uvx twine check dist/*
 
       - name: Publish to PyPI
@@ -49,4 +49,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
-          packages-dir: hungovercoders-repo-tools/dist
+          packages-dir: hungovercoders_repo_tools/dist
