@@ -1,6 +1,6 @@
-# Log
+# Developer Diary
 
-How was this package built.
+This document serves as a diary for the development of this package. It is intended to provide insights into the development process, decisions made, and tools used.
 
 ## 20250524
 
@@ -16,13 +16,5 @@ How was this package built.
     - Leverage mkdocs [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#supported-types).
     - Added [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) theme.
 
-### Useful Commands
 
-```bash
-python --version
-uv --version
-mkdocs gh-deploy
-mkdocs serve
-git-cliff -c cliff.toml
-```
 

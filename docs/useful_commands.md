@@ -1,0 +1,9 @@
+# Useful Commands
+
+```bash
+python --version
+uv --version
+mkdocs gh-deploy
+mkdocs serve
+git-cliff -c cliff.toml
+```
