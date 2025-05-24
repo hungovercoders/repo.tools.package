@@ -24,12 +24,12 @@ jobs:
       - name: Run Lint
         run: |
           cd hungovercoders-repo-tools
-          uv run ruff .
+          uvx ruff
 
       - name: Run tests
         run: |
           cd hungovercoders-repo-tools
-          uv run pytest tests
+          uvx pytest
 
       - name: Publish to PyPI
         if: startsWith(github.ref, 'refs/tags/v')
