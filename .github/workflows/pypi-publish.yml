@@ -11,29 +11,25 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install uv
-        run: |
-          pipx install uv
+        uses: astral-sh/setup-uv@v5
 
-      - name: Build package with uv
+      - name: Install the project
         run: |
           cd hungovercoders-repo-tools
-          uv pip install --upgrade build
-          uv -m build
+          uv sync --locked --all-extras --dev
 
-      - name: Lint package with ruff
+      - name: Run Lint
         run: |
           cd hungovercoders-repo-tools
-          uv pip install --upgrade ruff
-          uv run ruff .   
-          
-      - name: Test package
+          uv run ruff .
+
+      - name: Run tests
         run: |
           cd hungovercoders-repo-tools
-          uv run pytest
+          uv run pytest tests
 
       - name: Publish to PyPI
         if: startsWith(github.ref, 'refs/tags/v')
