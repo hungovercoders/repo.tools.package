@@ -38,7 +38,7 @@ jobs:
         run: |
           cd hungovercoders_repo_tools
           pip install pytest
-          pytest --cov=hungovercoders_repo_tools --cov-report=xml --cov-report=html
+          pytest
 
       - name: Build distribution
         run: |
