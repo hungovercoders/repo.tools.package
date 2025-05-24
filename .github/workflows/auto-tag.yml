@@ -1,5 +1,8 @@
 name: Auto Tag Python Package Version
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
