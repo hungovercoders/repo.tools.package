@@ -28,6 +28,9 @@ jobs:
         run: |
           pip install -r .devcontainer/requirements.txt
 
+      - name: Generate changelog
+        run: git-cliff -c cliff.toml
+
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force
         env:

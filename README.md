@@ -11,6 +11,10 @@ Python
 python --version
 ```
 
+Requirements 
+
+- [Dev Requirements](.devcontainer/requirements.txt)
+
 Uv
 
 ```bash
