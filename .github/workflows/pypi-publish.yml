@@ -33,6 +33,16 @@ jobs:
           cd hungovercoders-repo-tools
           uvx pytest
 
+      - name: Build distribution
+        run: |
+          cd hungovercoders-repo-tools
+          uvx python -m build
+
+      - name: Check distribution with twine
+        run: |
+          cd hungovercoders-repo-tools
+          uvx twine check dist/*
+
       - name: Publish to PyPI
         if: startsWith(github.ref, 'refs/tags/v')
         uses: pypa/gh-action-pypi-publish@release/v1
