@@ -8,6 +8,7 @@ on:
       - 'v*'
     paths:
     - 'hungovercoders-repo-tools/**'
+    - '.github/workflows/pypi-publish.yml'
 
 jobs:
   build-and-publish:
