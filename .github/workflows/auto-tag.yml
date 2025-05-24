@@ -30,10 +30,15 @@ jobs:
             echo "EXISTS=false" >> $GITHUB_ENV
           fi
 
+      - name: Set up GitHub authentication
+        if: env.EXISTS == 'false'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
       - name: Create and push tag
         if: env.EXISTS == 'false'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag v$VERSION
           git push origin v$VERSION
