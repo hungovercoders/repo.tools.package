@@ -12,5 +12,10 @@
         "setuptools",
         "usernamehw",
         "yzhang"
-    ]
+    ],
+    "python.testing.pytestArgs": [
+        "hungovercoders_repo_tools"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

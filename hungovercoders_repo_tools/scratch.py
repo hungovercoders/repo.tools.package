@@ -1,3 +1,3 @@
-from hungovercoders_repo_tools import example
+from hungovercoders_repo_tools import greetings
 
-example.hello()
+greetings.hello()
