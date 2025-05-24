@@ -31,3 +31,9 @@ flake8 .
 
 ## Test
 
+## Tag and Push
+
+```bash
+scripts/tag_and_push.sh
+```
+
