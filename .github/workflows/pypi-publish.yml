@@ -29,10 +29,15 @@ jobs:
           cd hungovercoders_repo_tools
           uvx ruff check
 
+      - name: Install package for testing
+        run: |
+          cd hungovercoders_repo_tools
+          uvx pip install -e .
+
       - name: Run tests
         run: |
           cd hungovercoders_repo_tools
-          pytest
+          uvx pytest
 
       - name: Build distribution
         run: |
