@@ -32,12 +32,13 @@ jobs:
       - name: Install package for testing
         run: |
           cd hungovercoders_repo_tools
-          uvx pip install -e .
+          pip install -e .
 
       - name: Run tests
         run: |
           cd hungovercoders_repo_tools
-          uvx pytest
+          pip install pytest
+          pytest --cov=hungovercoders_repo_tools --cov-report=xml --cov-report=html
 
       - name: Build distribution
         run: |
