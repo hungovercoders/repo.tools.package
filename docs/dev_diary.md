@@ -6,6 +6,7 @@ This document serves as a diary for the development of this package. It is inten
 
 !!! success "Setup"
     - Setup a devcontainer.
+    - Followed this blog for [uv setup a package](https://sarahglasmacher.com/how-to-build-python-package-uv/).
 
 !!! info "Tooling"
     - Started to utilise [uv](https://docs.astral.sh/uv/getting-started/) for python project  management.
@@ -15,6 +16,9 @@ This document serves as a diary for the development of this package. It is inten
     - Installed mkdocs and created [documentation in github pages](https://www.mkdocs.org/user-guide/deploying-your-docs/).
     - Leverage mkdocs [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#supported-types).
     - Added [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) theme.
+
+
+
 
 
 

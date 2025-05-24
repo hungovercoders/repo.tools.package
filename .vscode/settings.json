@@ -1,14 +1,16 @@
 {
     "cSpell.words": [
+        "capfd",
         "devcontainers",
         "errorlens",
         "mkdocs",
-        "pylance",
-        "usernamehw",
-        "yzhang",
-        "pytest",
         "pipx",
+        "pylance",
+        "pypa",
         "PYPI",
-        "pypa"
+        "pytest",
+        "setuptools",
+        "usernamehw",
+        "yzhang"
     ]
 }

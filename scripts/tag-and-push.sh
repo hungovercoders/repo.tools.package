@@ -9,6 +9,11 @@ TAG="v$VERSION"
 
 echo "Detected version: $VERSION"
 
+if git rev-parse "$TAG" >/dev/null 2>&1; then
+    echo "Tag $TAG already exists. Deleting..."
+    git tag -d "$TAG"
+    git push --delete origin "$TAG" || true
+fi
 git tag "$TAG"
 git push origin "$TAG"
 echo "Tag $TAG created and pushed."
