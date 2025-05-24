@@ -1,5 +1,5 @@
 [project]
-name = "hungovercoders-repo-tools"
+name = "hungovercoders_repo_tools"
 version = "0.1.5"
 description = "hungovercoders repository tools for managing and monitoring quality of repositories."
 readme = "README.md"
