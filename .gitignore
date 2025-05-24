@@ -33,7 +33,7 @@ ENV/
 site/
 
 # VS Code settings
-.vscode/
+#.vscode/
 
 # OS files
 .DS_Store
