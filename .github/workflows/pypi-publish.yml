@@ -24,7 +24,7 @@ jobs:
       - name: Run Lint
         run: |
           cd hungovercoders-repo-tools
-          uvx ruff
+          uvx ruff check
 
       - name: Run tests
         run: |
