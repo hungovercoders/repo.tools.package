@@ -36,7 +36,7 @@ jobs:
       - name: Build distribution
         run: |
           cd hungovercoders-repo-tools
-          uvx python -m build
+          uv build
 
       - name: Check distribution with twine
         run: |
