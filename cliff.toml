@@ -12,12 +12,15 @@ header = "# Changelog\n"
 # https://keats.github.io/tera/docs/#introduction
 body = """
 {% if version %}
-## [{{ version }}] - {{ timestamp | date(format=\"%Y-%m-%d\") }}
+## [{{ version }}] - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}
 ## [unreleased]
 {% endif %}
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group | striptags | trim }}
 {% for commit in commits %}
-- {{ commit.message }}
+- {{ commit.message | upper_first }}
+{% endfor %}
 {% endfor %}
 """
 # template for the changelog footer
