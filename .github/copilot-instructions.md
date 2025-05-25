@@ -1,0 +1,1 @@
+Use Conventional Commits format when suggesting commit messages. Follow the format: <type>(<scope>): <short summary>
