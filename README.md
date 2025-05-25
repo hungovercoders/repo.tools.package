@@ -1,4 +1,5 @@
 # repo.tools.package
+
 A python package for repo tools
 
 ## Contributing
@@ -11,7 +12,7 @@ Python
 python --version
 ```
 
-Requirements 
+Requirements
 
 - [Dev Requirements](.devcontainer/requirements.txt)
 
@@ -36,4 +37,3 @@ flake8 .
 ```bash
 scripts/tag_and_push.sh
 ```
-

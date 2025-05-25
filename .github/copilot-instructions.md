@@ -1,1 +1,18 @@
-Use Conventional Commits format when suggesting commit messages. Follow the format: <type>(<scope>): <short summary>
+- Use Conventional Commits format when suggesting commit messages. Follow the format: <type>(<scope>): <short summary>
+- Use clear, descriptive function and variable names related to code quality, TODO detection, and complexity analysis.
+- Follow PEP8 style guidelines for all Python code.
+- Include comprehensive docstrings for all public functions and classes.
+- Write unit tests for all major features, using pytest conventions.
+- Ensure the package is installable (with a proper pyproject.toml or setup.py).
+- Provide a CLI entry point for running TODO and complexity checks on a directory.
+- Output results in both human-readable and machine-readable (e.g., JSON/Markdown) formats.
+- Ignore files and directories as specified in .gitignore.
+- Add type hints to all function signatures.
+- Use logging for warnings and errors, not print statements.
+- Document all public APIs and provide usage examples in the README.
+- Use Conventional Commits for commit messages.
+- Ensure the package passes linting (flake8, pylint, or ruff) and type checking (mypy).
+- Write modular, reusable functions for:
+    - Scanning files for TODO comments (supporting various comment styles).
+    - Parsing and reporting TODOs with file path, line number, and message.
+    - Calculating code complexity (e.g., cyclomatic complexity, line counts, function counts).

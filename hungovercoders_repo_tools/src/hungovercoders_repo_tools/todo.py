@@ -1,9 +1,20 @@
 import os
 import re
 from pathlib import Path
+import logging
+from typing import List, Tuple, Union
 
-def get_gitignore_patterns(gitignore_path):
-    patterns = []
+def get_gitignore_patterns(gitignore_path: Path) -> List[str]:
+    """
+    Parse .gitignore file and return a list of ignore patterns.
+
+    Args:
+        gitignore_path (Path): Path to the .gitignore file.
+
+    Returns:
+        List[str]: List of ignore patterns.
+    """
+    patterns: List[str] = []
     if not gitignore_path.exists():
         return patterns
     with gitignore_path.open() as f:
@@ -14,28 +25,53 @@ def get_gitignore_patterns(gitignore_path):
             patterns.append(line)
     return patterns
 
-def is_ignored(path, patterns):
+def is_ignored(path: Path, patterns: List[str]) -> bool:
+    """
+    Check if a file or directory should be ignored based on patterns and git hook rules.
+
+    Args:
+        path (Path): Path to check.
+        patterns (List[str]): List of ignore patterns.
+
+    Returns:
+        bool: True if path should be ignored, False otherwise.
+    """
     from fnmatch import fnmatch
-    # Always ignore .git/hooks/ and .git/hooks/* (githook samples)
     git_hooks_patterns = ['.git/hooks/', '.git/hooks/*']
     for gh_pattern in git_hooks_patterns:
-        if fnmatch(str(path), gh_pattern) or fnmatch(str(path.relative_to(Path.cwd())), gh_pattern):
-            return True
+        try:
+            if fnmatch(str(path), gh_pattern) or fnmatch(str(path.relative_to(Path.cwd())), gh_pattern):
+                return True
+        except ValueError:
+            # path is not relative to cwd
+            continue
     for pattern in patterns:
-        # Handle directory ignore
         if pattern.endswith('/'):
-            if path.is_dir() and fnmatch(str(path.relative_to(Path.cwd())), pattern.rstrip('/')):
-                return True
-            if fnmatch(str(path.parent.relative_to(Path.cwd())), pattern.rstrip('/')):
-                return True
-        # Handle file ignore
+            try:
+                if path.is_dir() and fnmatch(str(path.relative_to(Path.cwd())), pattern.rstrip('/')):
+                    return True
+                if fnmatch(str(path.parent.relative_to(Path.cwd())), pattern.rstrip('/')):
+                    return True
+            except ValueError:
+                continue
         if fnmatch(str(path.relative_to(Path.cwd())), pattern):
             return True
     return False
 
-def find_todos(root_dir, ignore_patterns):
-    todos = []
+def find_todos(root_dir: Union[str, Path], ignore_patterns: List[str]) -> List[Tuple[str, int, str]]:
+    """
+    Recursively scan files for TODO comments, skipping ignored files/dirs.
+
+    Args:
+        root_dir (Union[str, Path]): Root directory to scan.
+        ignore_patterns (List[str]): List of ignore patterns.
+
+    Returns:
+        List[Tuple[str, int, str]]: List of (file, line number, TODO message).
+    """
+    todos: List[Tuple[str, int, str]] = []
     this_file = Path(__file__).resolve()
+    root_dir = Path(root_dir)
     for dirpath, dirnames, filenames in os.walk(root_dir):
         dirnames[:] = [d for d in dirnames if not is_ignored(Path(dirpath) / d, ignore_patterns)]
         for filename in filenames:
@@ -51,23 +87,35 @@ def find_todos(root_dir, ignore_patterns):
                             continue
                         if match:
                             todos.append((str(file_path.relative_to(root_dir)), i, match.group(1).strip()))
-            except Exception:
+            except Exception as e:
+                logging.warning(f"Failed to read {file_path}: {e}")
                 continue
     return todos
 
-def write_todo_md(todos, output_path):
-    with open(output_path, 'w', encoding='utf-8') as f:
+def write_todo_md(todos: List[Tuple[str, int, str]], output_path: Union[str, Path]) -> None:
+    """
+    Write TODOs to a Markdown file in a table format.
+
+    Args:
+        todos (List[Tuple[str, int, str]]): List of TODOs.
+        output_path (Union[str, Path]): Path to output Markdown file.
+    """
+    output_path = Path(output_path)
+    with output_path.open('w', encoding='utf-8') as f:
         f.write('# TODOs in Repository\n\n')
         f.write('| File | Line | TODO Comment |\n')
         f.write('|------|------|--------------|\n')
         if todos:
             for file, line, comment in todos:
-                f.write(f'| {file} | {line} | {comment} |\n') # TODO: convert todo location to markdown link
+                f.write(f'| {file} | {line} | {comment} |\n')
         else:
             f.write('| _No TODOs found in tracked files (excluding .gitignore entries)._ |\n')
         f.write('\n*This list is auto-generated. Only TODOs in tracked files are shown.*\n')
 
-def main():
+def main() -> None:
+    """
+    CLI entry point for scanning and reporting TODOs in the repository.
+    """
     # Find the repo root by walking up until .git or .gitignore is found
     current = Path(__file__).resolve().parent
     repo_root = None
