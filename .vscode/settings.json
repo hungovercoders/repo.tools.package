@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "capfd",
+        "capsys",
         "devcontainers",
         "errorlens",
         "mkdocs",
