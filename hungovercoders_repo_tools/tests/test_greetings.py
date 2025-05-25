@@ -1,7 +1,7 @@
 import unittest
 from hungovercoders_repo_tools import greetings
 
-class TestExample(unittest.TestCase):
+class TestGreetings(unittest.TestCase):
     def test_hello(self):
         # Capture the output of the hello function
         import io
