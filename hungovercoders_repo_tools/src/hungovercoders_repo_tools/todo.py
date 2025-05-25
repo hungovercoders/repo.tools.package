@@ -37,19 +37,18 @@ def find_todos(root_dir, ignore_patterns):
     todos = []
     this_file = Path(__file__).resolve()
     for dirpath, dirnames, filenames in os.walk(root_dir):
-        # Remove ignored directories in-place
         dirnames[:] = [d for d in dirnames if not is_ignored(Path(dirpath) / d, ignore_patterns)]
         for filename in filenames:
             file_path = Path(dirpath) / filename
-            # Ignore this script itself
-            if Path(file_path).resolve() == this_file:
-                continue
             if is_ignored(file_path, ignore_patterns):
                 continue
             try:
                 with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                     for i, line in enumerate(f, 1):
                         match = re.search(r'TODO:(.*)', line)
+                        # Ignore the specific instance in this file where the line contains the search pattern itself
+                        if str(file_path.resolve()) == str(this_file) and "match = re.search(r'TODO:(.*)', line)" in line:
+                            continue
                         if match:
                             todos.append((str(file_path.relative_to(root_dir)), i, match.group(1).strip()))
             except Exception:
