@@ -21,9 +21,4 @@ This document serves as a diary for the development of this package. It is inten
 
 !!! info "Tooling"
     - Add repo [copilot prompt](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot) to ensure uses conventional commits.
-
-
-
-
-
-
+    - Investigated [coverage](https://coverage.readthedocs.io/en/7.2.7/) and [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/) for code coverage. Unsure which one to use.

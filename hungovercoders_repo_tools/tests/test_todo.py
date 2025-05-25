@@ -1,8 +1,3 @@
-import os
-import tempfile
-import shutil
-from pathlib import Path
-import pytest
 from hungovercoders_repo_tools.todo import get_gitignore_patterns, is_ignored, find_todos, write_todo_md
 
 def test_get_gitignore_patterns(tmp_path):
