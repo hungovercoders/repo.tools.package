@@ -33,6 +33,9 @@ jobs:
       - name: Generate changelog
         run: git-cliff -c cliff.toml
 
+      - name: Generate TODO
+        run: python3 hungovercoders_repo_tools/src/hungovercoders_repo_tools/todo.py
+
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force
         env:
