@@ -35,5 +35,5 @@ flake8 .
 ## Tag and Push
 
 ```bash
-scripts/tag_and_push.sh
+sh scripts/tag_and_push.sh
 ```
