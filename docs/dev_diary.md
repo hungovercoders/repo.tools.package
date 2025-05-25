@@ -17,6 +17,11 @@ This document serves as a diary for the development of this package. It is inten
     - Leverage mkdocs [admonitions](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#supported-types).
     - Added [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) theme.
 
+## 20250225
+
+!!! info "Tooling"
+    - Add repo [copilot prompt](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot) to ensure uses conventional commits.
+
 
 
 
