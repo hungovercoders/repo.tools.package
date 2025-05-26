@@ -2,6 +2,8 @@
 
 A python package for repo tools
 
+#TODO: improve release mechanism with tagging and building as too much repetition and room for error
+
 ## Contributing
 
 ## Prerequisites
