@@ -118,6 +118,7 @@ def main() -> None:
     """
     # Find the repo root by walking up until .git or .gitignore is found
     current = Path(__file__).resolve().parent
+    print(f"Current directory: {current}")
     repo_root = None
     for parent in [current] + list(current.parents):
         if (parent / '.gitignore').exists() or (parent / '.git').exists():
@@ -131,7 +132,9 @@ def main() -> None:
     output_path = docs_dir / 'todo.md'
     ignore_patterns = get_gitignore_patterns(gitignore_path)
     todos = find_todos(repo_root, ignore_patterns)
+    print(f"Found {len(todos)} TODOs in the repository.")
     write_todo_md(todos, output_path)
+    print(f"TODOs written to {output_path.resolve()}")
 
 if __name__ == '__main__':
     main()
