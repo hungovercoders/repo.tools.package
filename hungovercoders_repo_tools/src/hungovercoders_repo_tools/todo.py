@@ -43,7 +43,6 @@ def is_ignored(path: Path, patterns: List[str]) -> bool:
             if fnmatch(str(path), gh_pattern) or fnmatch(str(path.relative_to(Path.cwd())), gh_pattern):
                 return True
         except ValueError:
-            # path is not relative to cwd
             continue
     for pattern in patterns:
         if pattern.endswith('/'):
@@ -54,8 +53,11 @@ def is_ignored(path: Path, patterns: List[str]) -> bool:
                     return True
             except ValueError:
                 continue
-        if fnmatch(str(path.relative_to(Path.cwd())), pattern):
-            return True
+        try:
+            if fnmatch(str(path.relative_to(Path.cwd())), pattern):
+                return True
+        except ValueError:
+            continue
     return False
 
 def find_todos(root_dir: Union[str, Path], ignore_patterns: List[str]) -> List[Tuple[str, int, str]]:
@@ -116,18 +118,18 @@ def main() -> None:
     """
     CLI entry point for scanning and reporting TODOs in the repository.
     """
-    # Find the repo root by walking up until .git or .gitignore is found
-    current = Path(__file__).resolve().parent
-    print(f"Current directory: {current}")
+    # Find the repo root by walking up from the current working directory
+    current = Path.cwd()
+    print(f"Current working directory: {current}")
     repo_root = None
     for parent in [current] + list(current.parents):
         if (parent / '.gitignore').exists() or (parent / '.git').exists():
             repo_root = parent
             break
     if repo_root is None:
-        repo_root = Path(__file__).resolve().parent.parent.parent  # fallback
+        repo_root = current  # fallback to current directory
     gitignore_path = repo_root / '.gitignore'
-    docs_dir = repo_root / 'docs'
+    docs_dir = current / 'docs'
     docs_dir.mkdir(exist_ok=True)
     output_path = docs_dir / 'todo.md'
     ignore_patterns = get_gitignore_patterns(gitignore_path)
