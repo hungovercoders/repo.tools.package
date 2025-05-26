@@ -22,7 +22,11 @@ Uv
 uv --version
 ```
 
+TODO: Ensure local setup is an easily reproducible process and the same as the CI.
+
 ## Lint
+
+TODO: add linting as a pre-commit
 
 ```bash
 flake8 .

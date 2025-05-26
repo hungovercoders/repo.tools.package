@@ -1,10 +1,9 @@
-from hungovercoders_repo_tools import greetings, todo
+from hungovercoders_repo_tools import greetings
 # from pathlib import Path
 # import os
 # import hungovercoders_repo_tools.todo
 
 greetings.hello()
-
 
 # current = Path(__file__).resolve().parent
 # repo_root = None
