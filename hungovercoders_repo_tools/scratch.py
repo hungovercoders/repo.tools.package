@@ -1,7 +1,7 @@
 from hungovercoders_repo_tools import greetings, todo
-from pathlib import Path
-import os
-import hungovercoders_repo_tools.todo
+# from pathlib import Path
+# import os
+# import hungovercoders_repo_tools.todo
 
 greetings.hello()
 
@@ -26,9 +26,9 @@ greetings.hello()
 
 
 
-print("CWD:", os.getcwd())
-print("todo.py location:", hungovercoders_repo_tools.todo.__file__)
-print("__file__:", __file__)
-current = Path(__file__).resolve().parent
-print(current)
+# print("CWD:", os.getcwd())
+# print("todo.py location:", hungovercoders_repo_tools.todo.__file__)
+# print("__file__:", __file__)
+# current = Path(__file__).resolve().parent
+# print(current)
 
