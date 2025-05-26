@@ -1,6 +1,6 @@
 [project]
 name = "hungovercoders_repo_tools"
-version = "0.1.8"
+version = "0.1.9"
 description = "hungovercoders repository tools for managing and monitoring quality of repositories."
 readme = "README.md"
 authors = [
