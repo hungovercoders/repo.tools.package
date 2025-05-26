@@ -2,7 +2,8 @@
 
 A python package for repo tools
 
-#TODO: improve release mechanism with tagging and building as too much repetition and room for error
+TODO: improve release mechanism with tagging and building as too much repetition and room for error
+TODO: fix todo references into test todo and todo function
 
 ## Contributing
 
